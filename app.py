@@ -47,4 +47,4 @@ def delete_libro(id):
     return jsonify({'message': 'Libro eliminado'}), 200
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()

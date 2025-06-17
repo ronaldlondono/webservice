@@ -2,8 +2,16 @@ from peewee import *
 import os
 
 # Configuración de la base de datos
-DATABASE_URL = 'postgresql://ronald:GaiUbnny4ZAWa6VEbmmTkiaZgHtuJcH3@dpg-d17f0cidbo4c73fs4nk0-a.oregon-postgres.render.com/formativa_db?sslmode=require'
-db = PostgresqlDatabase(DATABASE_URL)
+DATABASE_URL = 'postgresql://ronald:GaiUbnny4ZAWa6VEbmmTkiaZgHtuJcH3@dpg-d17f0cidbo4c73fs4nk0-a.oregon-postgres.render.com:5432/formativa_db'
+
+db = PostgresqlDatabase(
+    database='formativa_db',
+    user='ronald',
+    password='GaiUbnny4ZAWa6VEbmmTkiaZgHtuJcH3',
+    host='dpg-d17f0cidbo4c73fs4nk0-a.oregon-postgres.render.com',
+    port=5432,
+    sslmode='require'  # Esto es crucial para Render
+)
 
 class Libro(Model):
     id = AutoField()
@@ -16,5 +24,10 @@ class Libro(Model):
     class Meta:
         database = db
 
-db.connect()
-db.create_tables([Libro], safe=True)
+# Manejo de errores para conexión
+try:
+    db.connect()
+    db.create_tables([Libro], safe=True)
+    print("✅ Conectado a la base de datos y tablas creadas")
+except Exception as e:
+    print(f"❌ Error de conexión: {e}")
