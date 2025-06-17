@@ -40,6 +40,21 @@ def create_libro():
     )
     return jsonify({'id': libro.id}), 201
 
+@app.route('/libros/<int:id>', methods=['GET'])
+def get_libro(id):
+    try:
+        libro = Libro.get_by_id(id)
+        return jsonify({
+            'id': libro.id,
+            'titulo': libro.titulo,
+            'autor': libro.autor,
+            'año_publicacion': libro.año_publicacion,
+            'genero': libro.genero,
+            'prestado': libro.prestado
+        })
+    except Libro.DoesNotExist:
+        return jsonify({'error': 'Libro no encontrado'}), 404
+    
 @app.route('/libros/<int:id>', methods=['PUT'])
 def update_libro(id):
     try:
