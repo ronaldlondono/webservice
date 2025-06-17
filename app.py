@@ -5,6 +5,18 @@ from models import Libro
 app = Flask(__name__)
 CORS(app)  # Habilitar CORS para GitHub Pages
 
+@app.route('/')
+def home():
+    return jsonify({
+        "message": "Bienvenido a la API de Biblioteca",
+        "endpoints": {
+            "GET /libros": "Listar todos los libros",
+            "POST /libros": "Crear nuevo libro",
+            "PUT /libros/<id>": "Actualizar libro",
+            "DELETE /libros/<id>": "Eliminar libro"
+        }
+    })
+
 @app.route('/libros', methods=['GET'])
 def get_libros():
     libros = Libro.select()
