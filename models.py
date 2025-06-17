@@ -2,7 +2,7 @@ from peewee import *
 import os
 
 # Configuración de la base de datos
-DATABASE_URL = 'postgresql://ronald:GaiUbnny4ZAWa6VEbmmTkiaZgHtuJcH3@dpg-d17f0cidbo4c73fs4nk0-a.oregon-postgres.render.com:5432/formativa_db'
+DATABASE_URL = 'postgresql://ronald:GaiUbnny4ZAWa6VEbmmTkiaZgHtuJcH3@dpg-d17f0cidbo4c73fs4nk0-a/formativa_db'
 
 db = PostgresqlDatabase(
     database='formativa_db',
