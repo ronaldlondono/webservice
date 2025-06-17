@@ -1,8 +1,16 @@
 from peewee import *
 import os
+from peewee import PostgresqlDatabase
 
 # Configuración de la base de datos
-DATABASE_URL = 'postgresql://ronald:GaiUbnny4ZAWa6VEbmmTkiaZgHtuJcH3@dpg-d17f0cidbo4c73fs4nk0-a/formativa_db'
+DATABASE_URL = ['DATABASE_URL']
+if DATABASE_URL[0]:
+    db = PostgresqlDatabase(DATABASE_URL[0], sslmode='require')
+else:
+    # Configuración local para desarrollo
+    # Asegúrate de que estas credenciales sean correctas y seguras
+    # No las compartas públicamente
+    print("❌ DATABASE_URL no está configurada, usando configuración local")
 
 db = PostgresqlDatabase(
     database='formativa_db',
