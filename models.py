@@ -1,13 +1,15 @@
 from peewee import *
 import os
-from peewee import PostgresqlDatabase
+import urllib.parse
+from playhouse.db_url import connect
 
-# Lee la URL de la variable de entorno
-db_url = os.getenv('DATABASE_URL')
-if not db_url:
-    raise RuntimeError("❌ DATABASE_URL no está configurada")
-# Peewee permite pasar sslmode en la URL
-db = PostgresqlDatabase(db_url, sslmode='require')
+DATABASE_URL = os.getenv('DATABASE_URL')
+if not DATABASE_URL:
+    raise RuntimeError("DATABASE_URL no está configurada")
+
+# Parsear la URL para manejar SSL
+url = urllib.parse.urlparse(DATABASE_URL)
+db = connect(DATABASE_URL)
 
 
 class Libro(Model):
