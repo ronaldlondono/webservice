@@ -2,8 +2,7 @@ from peewee import *
 import os
 
 # Configuración de la base de datos
-DATABASE_URL = os.getenv('DATABASE_URL') or 'postgresql://user:password@localhost/biblioteca'
-
+DATABASE_URL = 'postgresql://ronald:GaiUbnny4ZAWa6VEbmmTkiaZgHtuJcH3@dpg-d17f0cidbo4c73fs4nk0-a.oregon-postgres.render.com/formativa_db?sslmode=require'
 db = PostgresqlDatabase(DATABASE_URL)
 
 class Libro(Model):
